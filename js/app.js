@@ -27,6 +27,7 @@ const images = [
 ]
 
 const carouselDOMElement = document.querySelector('.carousel-main')
+const thumbnailDOMElement = document.querySelector('.carousel-thumbnail')
 
 addImagesToCarousel()
 
@@ -57,27 +58,37 @@ function addImagesToCarousel(){
         </div>
         `
         carouselDOMElement.innerHTML += currentImageContent
+        const currentThumbnailImmage = `
+        <img src="./${currentImage.image}" alt="" class="thumbnail-img ${activeClass}">
+        `
+        thumbnailDOMElement.innerHTML += currentThumbnailImmage
     }
 }
 
 function addScroll(){
     const scrollUpElement = `<i class="fa-solid fa-chevron-up scroll-up"></i>`
     const scrollDownElement = `<i class="fa-solid fa-chevron-down scroll-down"></i>`
-    carouselDOMElement.innerHTML += scrollDownElement + scrollUpElement
+    thumbnailDOMElement.innerHTML += scrollDownElement + scrollUpElement
 }
 
 function scrollDown(){
     const carouselMainDOMElements = document.querySelectorAll('.carousel-main-content')
+    const thumbnailImagesDOMElement = document.querySelectorAll('.thumbnail-img')
     carouselMainDOMElements[activeImage].classList.remove('active')
+    thumbnailImagesDOMElement[activeImage].classList.remove('active')
     if(activeImage == (carouselMainDOMElements.length - 1)) activeImage = -1
     carouselMainDOMElements[activeImage + 1].classList.add('active')
+    thumbnailImagesDOMElement[activeImage + 1].classList.add('active')
     activeImage++
 }
 
 function scrollUp(){
     const carouselMainDOMElements = document.querySelectorAll('.carousel-main-content')
+    const thumbnailImagesDOMElement = document.querySelectorAll('.thumbnail-img')
     carouselMainDOMElements[activeImage].classList.remove('active')
+    thumbnailImagesDOMElement[activeImage].classList.remove('active')
     if(activeImage == 0) activeImage = carouselMainDOMElements.length
     carouselMainDOMElements[activeImage - 1].classList.add('active')
+    thumbnailImagesDOMElement[activeImage - 1].classList.add('active')
     activeImage--
 }
