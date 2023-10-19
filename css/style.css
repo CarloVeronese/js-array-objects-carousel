@@ -11,6 +11,7 @@ body{
 }
 
 .container{
+    flex-wrap: wrap;
     max-width: 860px;
     margin: 0 auto;
     display: flex;
@@ -91,4 +92,20 @@ img{
 
 .scroll-down{
     bottom: 10px;
+}
+
+.col-12{
+    flex-basis: 100%;
+    display: flex;
+    padding: 20px 0;
+    gap: 20px;
+}
+
+.button{
+    line-height: 25px;
+    padding: 0 10px;
+    background-color: aquamarine;
+    font-weight: 600;
+    border-radius: 999px;
+    cursor: pointer;
 }

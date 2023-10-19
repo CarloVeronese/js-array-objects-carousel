@@ -28,6 +28,9 @@ const images = [
 
 const carouselDOMElement = document.querySelector('.carousel-main')
 const thumbnailDOMElement = document.querySelector('.carousel-thumbnail')
+const startDOMElement = document.getElementById('btn-start')
+const stopDOMElement = document.getElementById('btn-stop')
+const reverseDOMElement = document.getElementById('btn-reverse')
 
 addImagesToCarousel()
 
@@ -37,10 +40,36 @@ const scrollDownDOMElement = document.querySelector('.scroll-down')
 
 let activeImage = 0
 
+let startAutoScroll = ''
+
+let scrollDirection = ''
+
 scrollDownDOMElement.addEventListener('click', scrollDown)
 
 scrollUpDOMElement.addEventListener('click', scrollUp)
 
+startDOMElement.addEventListener('click', function(){
+    startAutoScroll = setInterval(scrollDown,3000)
+    scrollDirection = 'down' 
+})
+
+stopDOMElement.addEventListener('click', function(){
+    clearInterval(startAutoScroll)
+    scrollDirection = ''
+})
+
+reverseDOMElement.addEventListener('click', function(){
+    if(scrollDirection == 'down'){
+        clearInterval(startAutoScroll)
+        startAutoScroll = setInterval(scrollUp,3000)
+        scrollDirection = 'up'
+    }
+    else if(scrollDirection == 'up'){
+        clearInterval(startAutoScroll)
+        startAutoScroll = setInterval(scrollDown,3000)
+        scrollDirection = 'down' 
+    }
+})
 
 function addImagesToCarousel(){
     addScroll()
