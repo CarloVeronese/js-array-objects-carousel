@@ -30,7 +30,19 @@ const carouselDOMElement = document.querySelector('.carousel-main')
 
 addImagesToCarousel()
 
+const scrollUpDOMElement = document.querySelector('.scroll-up')
+
+const scrollDownDOMElement = document.querySelector('.scroll-down')
+
+let activeImage = 0
+
+scrollDownDOMElement.addEventListener('click', scrollDown)
+
+scrollUpDOMElement.addEventListener('click', scrollUp)
+
+
 function addImagesToCarousel(){
+    addScroll()
     for(let i = 0; i < images.length; i++){
         const currentImage = images[i]
         let activeClass = ''
@@ -46,4 +58,26 @@ function addImagesToCarousel(){
         `
         carouselDOMElement.innerHTML += currentImageContent
     }
+}
+
+function addScroll(){
+    const scrollUpElement = `<i class="fa-solid fa-chevron-up scroll-up"></i>`
+    const scrollDownElement = `<i class="fa-solid fa-chevron-down scroll-down"></i>`
+    carouselDOMElement.innerHTML += scrollDownElement + scrollUpElement
+}
+
+function scrollDown(){
+    const carouselMainDOMElements = document.querySelectorAll('.carousel-main-content')
+    carouselMainDOMElements[activeImage].classList.remove('active')
+    if(activeImage == (carouselMainDOMElements.length - 1)) activeImage = -1
+    carouselMainDOMElements[activeImage + 1].classList.add('active')
+    activeImage++
+}
+
+function scrollUp(){
+    const carouselMainDOMElements = document.querySelectorAll('.carousel-main-content')
+    carouselMainDOMElements[activeImage].classList.remove('active')
+    if(activeImage == 0) activeImage = carouselMainDOMElements.length
+    carouselMainDOMElements[activeImage - 1].classList.add('active')
+    activeImage--
 }

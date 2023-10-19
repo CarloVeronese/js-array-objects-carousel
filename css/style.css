@@ -15,6 +15,10 @@ body{
     margin: 0 auto;
 }
 
+.carousel-main{
+    position: relative;
+}
+
 .carousel-img{
     width: 100%;
     display: block;
@@ -49,4 +53,24 @@ body{
 .carousel-text h3{
     font-weight: 600;
     font-size: 20px;
+}
+
+.scroll-up,
+.scroll-down{
+    z-index: 1;
+    position: absolute;
+    left: 50%;
+    padding: 2px;
+    transform: translateX(-50%);
+    background-color: #CCCCCC;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.scroll-up{
+    top: 10px;
+}
+
+.scroll-down{
+    bottom: 10px;
 }
